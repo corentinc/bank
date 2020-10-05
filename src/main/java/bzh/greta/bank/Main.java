@@ -11,7 +11,8 @@ public class Main {
     public static void main(String... args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         MenuMode selectedMenu = MenuHandler.execute();
-        MenuRouter menuRouteur = (MenuRouter) context.getBean("menuRouter");
-        menuRouteur.execute(new Account(0), selectedMenu);
+        MenuRouter menuRouteur = context.getBean(MenuRouter.class);
+        Account account = new Account(1000);
+        menuRouteur.execute(account, selectedMenu);
     }
 }
