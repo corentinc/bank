@@ -8,7 +8,9 @@
     </bean>
     <bean id="accountDao" class="bzh.greta.bank.dao.AccountDaoDb"/>
     <bean id="withdrawService" class="bzh.greta.bank.service.WithdrawService" />
-    <bean id="depositService" class="bzh.greta.bank.service.DepositService"/>
+    <bean id="depositService" class="bzh.greta.bank.service.DepositService">
+        <constructor-arg name="accountDao" ref="accountDao"/>
+    </bean>
     <bean id="menuRouter" class="bzh.greta.bank.router.MenuRouter">
         <constructor-arg name="withdrawService" ref="withdrawService"/>
         <constructor-arg name="depositService" ref="depositService"/>
