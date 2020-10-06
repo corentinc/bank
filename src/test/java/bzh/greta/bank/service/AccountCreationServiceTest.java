@@ -18,10 +18,12 @@ public class AccountCreationServiceTest {
 
         AccountCreationService service = new AccountCreationService(mockDao);
 
-        Account account = service.createAccount(10);
+        Account sentAccount = new Account(10);
 
-        assertThat(account.getBalance(), equalTo(10));
+        Account createdAccount = service.createAccount(sentAccount);
 
-        verify(mockDao).save(account);
+        assertThat(createdAccount, equalTo(sentAccount));
+
+        verify(mockDao).save(createdAccount);
     }
 }

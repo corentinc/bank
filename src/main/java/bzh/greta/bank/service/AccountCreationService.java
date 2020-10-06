@@ -17,8 +17,7 @@ public class AccountCreationService {
      *
      * @return return the account created
      */
-    public Account createAccount(int initialBalance) {
-        Account account = new Account(initialBalance);
+    public Account createAccount(Account account) {
         accountDao.save(account);
         return account;
     }

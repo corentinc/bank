@@ -8,4 +8,12 @@ public class Operation {
         this.operationType = operationType;
         this.amount = amount;
     }
+
+    public OperationType getOperationType() {
+        return operationType;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }

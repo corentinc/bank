@@ -1,15 +1,23 @@
 package bzh.greta.bank.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Account {
     private int balance;
-    private ArrayList<Operation> operations;
+    private List<Operation> operations;
 
-    public Account(final int solde) {
-        operations = new ArrayList<>();
-        this.balance = solde;
+    public Account(final int balance) {
+        this(balance, new ArrayList<>());
+    }
+
+    public Account(int balance, List<Operation> operations) {
+        this.balance = balance;
+        if (operations == null) {
+            operations = new ArrayList<>();
+        }
+        this.operations = operations;
     }
 
     public void deposit(int amount) {
@@ -24,6 +32,10 @@ public class Account {
 
     public int getBalance() {
         return balance;
+    }
+
+    public List<Operation> getOperations() {
+        return operations;
     }
 
     @Override

@@ -20,11 +20,11 @@ public class AccountController {
 
     @PostMapping("/account")
     @ResponseStatus(HttpStatus.CREATED)
-    public Account createAccount(@RequestParam int balance) {
-        return accountCreationService.createAccount(balance);
+    public void createAccount(@RequestBody Account accountToCreate) {
+        accountCreationService.createAccount(accountToCreate);
     }
 
-    @GetMapping("/account")
+    @GetMapping(value = "/account")
     public List<Account> findAll() {
         return accountFinderService.findAll();
     }
