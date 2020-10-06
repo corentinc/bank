@@ -1,8 +1,8 @@
 package bzh.greta.bank.service;
 
-import bzh.greta.bank.dao.AccountDaoDb;
+import bzh.greta.bank.dao.AccountDao;
 import bzh.greta.bank.domain.Account;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,7 +14,7 @@ public class AccountCreationServiceTest {
 
     @Test
     public void createAccount() {
-        AccountDaoDb mockDao = mock(AccountDaoDb.class);
+        AccountDao mockDao = mock(AccountDao.class);
 
         AccountCreationService service = new AccountCreationService(mockDao);
 

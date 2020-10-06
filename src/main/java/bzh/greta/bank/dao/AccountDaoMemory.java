@@ -1,19 +1,25 @@
 package bzh.greta.bank.dao;
 
 import bzh.greta.bank.domain.Account;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class AccountDaoDb implements AccountDao {
+@Primary
+public class AccountDaoMemory implements AccountDao {
+    private final List<Account> accountList = new ArrayList<>();
+
+    @Override
     public void save(Account account) {
-        throw new RuntimeException("Not implemented yet");
+        accountList.add(account);
     }
 
     @Override
     public List<Account> findAll() {
-        return null;
+        return accountList;
     }
 
     @Override

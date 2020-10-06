@@ -2,7 +2,7 @@ package bzh.greta.bank.service;
 
 import bzh.greta.bank.dao.AccountDao;
 import bzh.greta.bank.domain.Account;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 import static org.hamcrest.CoreMatchers.equalTo;

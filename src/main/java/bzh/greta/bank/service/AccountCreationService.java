@@ -1,13 +1,14 @@
 package bzh.greta.bank.service;
 
-import bzh.greta.bank.dao.AccountDaoDb;
+import bzh.greta.bank.dao.AccountDao;
 import bzh.greta.bank.domain.Account;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class AccountCreationService {
-    private final AccountDaoDb accountDao;
+    private final AccountDao accountDao;
 
-    public AccountCreationService(AccountDaoDb accountDao) {
+    public AccountCreationService(AccountDao accountDao) {
         this.accountDao = accountDao;
     }
 
