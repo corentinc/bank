@@ -20,8 +20,8 @@ public class AccountController {
 
     @PostMapping("/account")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAccount(@RequestBody Account accountToCreate) {
-        accountCreationService.createAccount(accountToCreate);
+    public void createAccount(@RequestParam int balance) {
+        accountCreationService.createAccount(balance);
     }
 
     @GetMapping(value = "/account")

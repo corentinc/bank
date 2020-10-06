@@ -5,19 +5,26 @@ import java.util.List;
 import java.util.Objects;
 
 public class Account {
+    private int id;
     private int balance;
     private List<Operation> operations;
 
-    public Account(final int balance) {
-        this(balance, new ArrayList<>());
+    public Account(int id, int balance) {
+        this(id, balance, new ArrayList<>());
     }
 
-    public Account(int balance, List<Operation> operations) {
+    public Account(int id, int balance, List<Operation> operations) {
+        this.id = id;
         this.balance = balance;
-        if (operations == null) {
-            operations = new ArrayList<>();
-        }
         this.operations = operations;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 
     public void deposit(int amount) {
@@ -30,9 +37,6 @@ public class Account {
         balance -= amount;
     }
 
-    public int getBalance() {
-        return balance;
-    }
 
     public List<Operation> getOperations() {
         return operations;
@@ -42,13 +46,14 @@ public class Account {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Account otherAccount = (Account) o;
-        return balance == otherAccount.balance &&
-                Objects.equals(operations, otherAccount.operations);
+        Account account = (Account) o;
+        return id == account.id &&
+                balance == account.balance &&
+                Objects.equals(operations, account.operations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(balance, operations);
+        return Objects.hash(id, balance, operations);
     }
 }

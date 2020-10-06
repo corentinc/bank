@@ -20,8 +20,8 @@ public class AccountFinderServiceTest {
         AccountFinderService accountFinderService = new AccountFinderService(accountDao);
         // je simule le comportement du mock
         // quand j'appelle la méthode .findById(15), il me retourne expectedAccount
-        when(accountDao.findById(15)).thenReturn(new Account(5000));
+        when(accountDao.findById(15)).thenReturn(new Account(15, 5000));
         // je m'assure que le service me retourne ce que lui renvoie le DAO
-        assertThat(new Account(5000), equalTo(accountFinderService.findAccountById(15)));
+        assertThat(new Account(15, 5000), equalTo(accountFinderService.findAccountById(15)));
     }
 }

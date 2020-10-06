@@ -17,8 +17,14 @@ public class AccountCreationService {
      *
      * @return return the account created
      */
-    public Account createAccount(Account account) {
+    public Account createAccount(int initialBalance) {
+        int newAccountId = getNewAccountId();
+        Account account = new Account(newAccountId, initialBalance);
         accountDao.save(account);
         return account;
+    }
+
+    private int getNewAccountId() {
+        return accountDao.findAll().size();
     }
 }
