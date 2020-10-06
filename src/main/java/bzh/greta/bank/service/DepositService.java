@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DepositService {
-    private final AccountDao accountDao;
+    private final AccountFinderService accountFinderService;
 
-    @Autowired
-    public DepositService(AccountDao accountDao) {
-        this.accountDao = accountDao;
+    public DepositService(AccountFinderService accountFinderService) {
+        this.accountFinderService = accountFinderService;
     }
 
-    public void depose(Account account) {
-        throw new RuntimeException("Not implemented yet");
+    public void depose(int accountId, int amount) {
+        Account account = accountFinderService.findAccountById(accountId);
+        account.deposit(amount);
     }
 }

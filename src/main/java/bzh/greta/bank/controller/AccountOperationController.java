@@ -1,14 +1,17 @@
 package bzh.greta.bank.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import bzh.greta.bank.service.DepositService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/account/{accountId}")
 public class AccountOperationController {
-    // todo Quelles dépendances ? On crée un nouveau service ? :)
+    private final DepositService depositService;
+
+    public AccountOperationController(DepositService depositService) {
+        this.depositService = depositService;
+    }
 
     /**
      * Dépose de l'argent
@@ -16,8 +19,9 @@ public class AccountOperationController {
      * @param amount le montant
      */
     @PostMapping("/depose/{amount}")
+    @ResponseStatus(HttpStatus.CREATED)
     public void deposit(@PathVariable int accountId, @PathVariable int amount) {
-        // todo
+        depositService.depose(accountId, amount);
     }
 
     /**
