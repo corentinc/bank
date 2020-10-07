@@ -2,7 +2,6 @@ package bzh.greta.bank.dao;
 
 import bzh.greta.bank.domain.Account;
 import bzh.greta.bank.exception.AccountNotFoundException;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-@Primary
 public class AccountDaoMemory implements AccountDao {
     private final Map<Integer, Account> accountMap = new HashMap<>();
 

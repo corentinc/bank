@@ -1,30 +1,28 @@
 package bzh.greta.bank.domain;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+@Entity // indique à JPA que cette classe map une table en BDD
+@Data // lombok - ajoute getters/setters, toString(), equals(), hashCode()
+@AllArgsConstructor // lombok - crée un constructeur avec tous les champs de la classe
+@NoArgsConstructor // lombok - crée un constructeur sans parametres
+@Builder
+@Getter
 public class Account {
+    @Id // indique que le champ 'id' est la Primary Key de la table
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // va être auto-incrémenté
     private int id;
     private int balance;
-    private List<Operation> operations;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Operation> operations = new ArrayList<>();
 
     public Account(int id, int balance) {
-        this(id, balance, new ArrayList<>());
-    }
-
-    public Account(int id, int balance, List<Operation> operations) {
         this.id = id;
         this.balance = balance;
-        this.operations = operations;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getBalance() {
-        return balance;
     }
 
     public void deposit(int amount) {
@@ -35,25 +33,5 @@ public class Account {
     public void withdraw(int amount) {
         operations.add(new Operation(OperationType.RETRAIT, amount));
         balance -= amount;
-    }
-
-
-    public List<Operation> getOperations() {
-        return operations;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return id == account.id &&
-                balance == account.balance &&
-                Objects.equals(operations, account.operations);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, balance, operations);
     }
 }

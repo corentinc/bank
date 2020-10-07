@@ -4,10 +4,9 @@ import bzh.greta.bank.dao.AccountDao;
 import bzh.greta.bank.domain.Account;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 
 public class AccountCreationServiceTest {
@@ -17,15 +16,13 @@ public class AccountCreationServiceTest {
         AccountDao mockDao = mock(AccountDao.class);
         AccountCreationService service = new AccountCreationService(mockDao);
 
-        when(mockDao.findAll()).thenReturn(Arrays.asList(
-                mock(Account.class),
-                mock(Account.class),
-                mock(Account.class)
-        ));
-
         Account createdAccount = service.createAccount(500);
 
-        assertEquals(createdAccount, new Account(3, 500));
+
+        assertEquals(createdAccount, Account.builder()
+                .balance(500)
+                .build()
+        );
         verify(mockDao).save(createdAccount);
     }
 }
